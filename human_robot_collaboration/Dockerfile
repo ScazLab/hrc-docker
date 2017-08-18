@@ -1,4 +1,4 @@
-FROM scazlab/hrc:baxter
+FROM scazlab/hrc-docker:baxter
 
 RUN cd ~/ros_ws/src \
     && git clone https://github.com/scazlab/human_robot_collaboration.git \
