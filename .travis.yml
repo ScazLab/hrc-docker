@@ -1,0 +1,24 @@
+os: linux
+sudo: required
+language: generic
+group: deprecated-2017Q3
+cache:
+- apt
+notifications:
+  email: false
+  slack:
+    rooms:
+    - secure: LvZzAkAYbDTvNdVRjpjnkcoojNo4yLyKuqJ2MydeSZGu2tBP7hSyrlXu2v+tdUwUhYBfNiKcEBcOwmq24Fn7uyW0Oe9AdTLGgR3YTuBMRuWH20g1pyfpwP3BeJgqewfycxI9gsydQboMf8Jp9XvOxqRSrMBBdTM86jwXzVDhxNzrMxjc7KTBliIOGx/r54zDvyMBEFMTOJmm3VI0gop7xz9OGoGYiOAR2LY0AXkwWwkyZCbnkTQRQuex3romJ1taMzqsnb3X+URK/ccJqS9Arw+M95p1JmQwTX6idvzeGgcKjrOlk1TjKHPjUG5wkpHfVTYPcMFWT9tXqeuCpu0I+MdhpjtboAAZVOvtPecmpAA4jPpZlr39qFeFSJPaiVPluaKys2/ZGDdr9CRN4N039U+aPnSOmdXIFwV5iKpS8IvF336umDtzI4smQMVo4jxZHq39xJpMojJ7Rgi4/E/WYtg3ABPfj3kk2s9HpR/f+fb4TIbS3cun4mpgohMJx/1MhPZj2j6oetSxKimqq3gKz6pu1WbtUD13/zrpAqCiUaf/NxxpXxVA2R4qmOB9LLd9wa2oP6m2fIXNCiukJPaVASN/LmvIxrpsEGONRbPRPXOyFwl7c1KKizhkpfZt+t5k+qMn3llj2uBz0nZeYSYJQHpp0LmLlJ02GMGFUtuV5s4=
+    on_success: change
+    on_failure: always
+env:
+  global:
+  - secure: XNqRjG5XH9m4vWWo1TSNZbHhyJ4aKR3g2qteM/vQl7q6ttBpVhePbLWbcS1OWqyHY4FsrnsmKzk73pXn1cyOz7Gv5xVZeUWsR0bCYOSEv+sgTf2lqUu7bnIzGqqw/PEMOOJsI2Ojs05ZGN+h3f8ILGjqLcvGwA3GGeH3AGd/TvOftbPtUzmqU4uYdYGH0LDDAEHiyPBGane8n8qfDLUMM5DgkOcD56vfLA2Ke92zlEikvn2/iv3tWPdnalbb2xsQDOQsjGmuusozkSRGLv/2LFSoWbCRIPqYf/3iDCEJDu+P9wm5N5z/n3dvuDp66evQut+Aae7/0JED+3/dY9wE3NigLnD3swgYNzePbWJPhOi2rDBRkqRWMCNgpeoI8f6mrAbZOExmuZit6UN3o630ERQTpD+kVxBCNG/MlUagROys2GRdKe3JCq1NVBIFB27HvX+4twVAkCDT+mlUEbMYmrkO0PGRKAtE79tFvl1eskdaiEcp7r0DIxYKSjFvQpEKNiinhYJplvjOGnLCglZvrXyMfmC+l6qyyXqoBlSt/LK44ozezD3z6bNQYCtk0LMaQ167fHkp0Z1CQCDfkCP/o2gTvKHIiDLSv0P9T3bjHMVoAnCqoEsofTRVPz/DzwuZkbhMNFowUOvWkbmmj9kBdCNenqwoR11kfLBD90CFL2Y=
+
+script:
+- echo "Nothing to test here!"
+
+after_success:
+  # Run build on Docker Hub
+  - |-
+    curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "'$TRAVIS_BRANCH'"}' -X POST $DOCKER_PUSH_URL
