@@ -19,12 +19,12 @@ RUN apt-get update && apt-get -y install gcc-4.9 g++-4.9
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 50
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
 
-RUN pip2 install numpy scipy scikit-learn
-
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 # RUN sed -i "s/^exit 101$/exit 0/" /usr/sbin/policy-rc.d
 RUN apt-get -y install git-core python-argparse python-wstool python-vcstools python-rosdep python-pip \
                        ros-indigo-control-msgs ros-indigo-joystick-drivers python-catkin-tools
+
+RUN pip2 install numpy scipy scikit-learn
 
 USER ros
 RUN  rosdep update
