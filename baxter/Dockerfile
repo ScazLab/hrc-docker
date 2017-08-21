@@ -13,9 +13,9 @@ WORKDIR   /home/ros
 
 # Add manually Eigen3 and g++-4.9
 RUN apt-get update && apt-get -y install software-properties-common libeigen3-dev
+RUN apt-get -y install gfortran libopenblas-dev liblapack-dev
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt-get update && apt-get -y install gcc-4.9 g++-4.9
-RUN apt-get -y install gfortran libopenblas-dev liblapack-dev
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 50
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
 
