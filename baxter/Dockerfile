@@ -26,6 +26,9 @@ RUN apt-get -y install git-core python-argparse python-wstool python-vcstools py
 
 RUN pip2 install numpy scipy scikit-learn
 
+# Upgrade pip to fix this https://github.com/ros-infrastructure/rosdep/issues/420
+RUN pip2 install pip --upgrade
+
 USER ros
 RUN  rosdep update
 RUN  mkdir -p ~/ros_ws/src && cd ~/ros_ws/src \
