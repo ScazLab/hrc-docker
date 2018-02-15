@@ -1,4 +1,4 @@
-FROM scazlab/hrc-docker:baxter
+FROM scazlab/human_robot_collaboration:master
 
 RUN cd ~/ros_ws/src \
     && git clone https://github.com/scazlab/baxter_tictactoe.git
