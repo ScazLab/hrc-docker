@@ -9,6 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN useradd ros
 RUN mkdir /home/ros && chown -R ros: /home/ros
 ENV HOME "/home/ros"
+ENV PATH="/home/ros/.local/bin:${PATH}"
 WORKDIR   /home/ros
 
 # Add manually Eigen3 and g++-4.9
