@@ -9,7 +9,10 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN useradd ros
 RUN mkdir /home/ros && chown -R ros: /home/ros
 ENV HOME "/home/ros"
+# This is useful when adding python stuff in user space
 ENV PATH="/home/ros/.local/bin:${PATH}"
+# This suppresses some python SSL warnings
+ENV PYTHONWARNINGS="ignore:a true SSLContext object"
 WORKDIR   /home/ros
 
 # Add manually Eigen3 and g++-4.9
